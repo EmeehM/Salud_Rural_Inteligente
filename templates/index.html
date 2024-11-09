@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Dengue</title>
+</head>
+<body>
+    <h1>Diagnóstico de Síntomas de Dengue</h1>
+    <form action="/diagnostico" method="post">
+        <h2>Síntomas Principales</h2>
+        <label>Fiebre:</label>
+        <input type="radio" name="Fiebre" value="1"> Sí
+        <input type="radio" name="Fiebre" value="0"> No<br>
+
+        <label>Dolor de Cabeza:</label>
+        <input type="radio" name="Dolor_Cabeza" value="1"> Sí
+        <input type="radio" name="Dolor_Cabeza" value="0"> No<br>
+
+        <label>Dolor Muscular:</label>
+        <input type="radio" name="Dolor_Muscular" value="1"> Sí
+        <input type="radio" name="Dolor_Muscular" value="0"> No<br>
+
+        <label>Náuseas:</label>
+        <input type="radio" name="Nauseas" value="1"> Sí
+        <input type="radio" name="Nauseas" value="0"> No<br>
+
+        <h2>Síntomas Secundarios</h2>
+        <label>Dolor Abdominal:</label>
+        <input type="radio" name="Dolor_Abdominal" value="1"> Sí
+        <input type="radio" name="Dolor_Abdominal" value="0"> No<br>
+
+        <label>Irritabilidad:</label>
+        <input type="radio" name="Irritabilidad" value="1"> Sí
+        <input type="radio" name="Irritabilidad" value="0"> No<br>
+
+        <label>Sarpullido:</label>
+        <input type="radio" name="Sarpullido" value="1"> Sí
+        <input type="radio" name="Sarpullido" value="0"> No<br>
+
+        <label>Vómito:</label>
+        <input type="radio" name="Vomito" value="1"> Sí
+        <input type="radio" name="Vomito" value="0"> No<br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
