@@ -1,48 +1,76 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico de Dengue</title>
+    <title>Formulario de Diagnóstico de Dengue</title>
 </head>
 <body>
-    <h1>Diagnóstico de Síntomas de Dengue</h1>
-    <form action="/diagnostico" method="post">
-        <h2>Síntomas Principales</h2>
-        <label>Fiebre:</label>
-        <input type="radio" name="Fiebre" value="1"> Sí
-        <input type="radio" name="Fiebre" value="0"> No<br>
+    <h1>Formulario de Diagnóstico de Dengue</h1>
+    <form id="form_sintomas">
+        <label>
+            <input type="checkbox" name="fiebre" value="1"> Fiebre
+        </label><br>
 
-        <label>Dolor de Cabeza:</label>
-        <input type="radio" name="Dolor_Cabeza" value="1"> Sí
-        <input type="radio" name="Dolor_Cabeza" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="dolor_cabeza" value="1"> Dolor de Cabeza
+        </label><br>
 
-        <label>Dolor Muscular:</label>
-        <input type="radio" name="Dolor_Muscular" value="1"> Sí
-        <input type="radio" name="Dolor_Muscular" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="dolor_muscular" value="1"> Dolor Muscular
+        </label><br>
 
-        <label>Náuseas:</label>
-        <input type="radio" name="Nauseas" value="1"> Sí
-        <input type="radio" name="Nauseas" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="nauseas" value="1"> Náuseas
+        </label><br>
 
-        <h2>Síntomas Secundarios</h2>
-        <label>Dolor Abdominal:</label>
-        <input type="radio" name="Dolor_Abdominal" value="1"> Sí
-        <input type="radio" name="Dolor_Abdominal" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="dolor_abdominal" value="1"> Dolor Abdominal
+        </label><br>
 
-        <label>Irritabilidad:</label>
-        <input type="radio" name="Irritabilidad" value="1"> Sí
-        <input type="radio" name="Irritabilidad" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="irritabilidad" value="1"> Irritabilidad
+        </label><br>
 
-        <label>Sarpullido:</label>
-        <input type="radio" name="Sarpullido" value="1"> Sí
-        <input type="radio" name="Sarpullido" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="sarpullido" value="1"> Sarpullido
+        </label><br>
 
-        <label>Vómito:</label>
-        <input type="radio" name="Vomito" value="1"> Sí
-        <input type="radio" name="Vomito" value="0"> No<br>
+        <label>
+            <input type="checkbox" name="vomito" value="1"> Vómito
+        </label><br>
 
         <button type="submit">Enviar</button>
     </form>
+
+    <script>
+        // Capturamos el evento de envío del formulario
+        document.getElementById('form_sintomas').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Crear un objeto para enviar los datos
+            let formData = new FormData(this);
+            let data = {};
+
+            // Convertir el FormData a un objeto para enviarlo en el request
+            formData.forEach((value, key) => {
+                data[key] = value === "1" ? 1 : 0;  // Convierte a 1 si está marcado, 0 si no
+            });
+
+            // Enviar los datos al servidor con fetch
+            fetch('/diagnostico', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Diagnóstico: " + data.diagnostico);
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
 </body>
 </html>
